@@ -6,7 +6,6 @@ import { getValueFromEvent } from './utils'
 
 const validator = new SimpleReactValidator()
 
-
 const formWrapperCreater = ({Form, validator=validator, store=window.sessionStorage}) => {
   class FormWrapper extends Component {
     constructor (props) {

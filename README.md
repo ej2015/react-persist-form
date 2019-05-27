@@ -1,4 +1,4 @@
-# React Persist 
+# React Persist Form 
 A form wrapper that handles the form input within the wrapper's own state. It is packed with some extra goodies: validation and persistence.
 
 ```
