@@ -8,12 +8,12 @@ npm install react-persist-form --save
 # Approach
 It is often not necessary or desirable to handle form inputs with the redux store. The form inputs are local to the form and are no concerns of the store. The extra boilerplate work to handle them slows down the development and crams up the codebase.
 
-This package extracts the form handling from the biz logic. The form wrapper will take care of the inputs locally. When the form is submitted, the data is passed back to the app.
+This package separates the form handling from the biz logic. The form wrapper will take care of the inputs locally. When the form is submitted, the data is passed back to the app.
 
 Integraions:
 
-validation: it comes with simple-react-validator. You can pass in a different validator object (e.g. your custom simple-react-validator), which will be passed back to your form for the actual implementation.
-persistence: it uses react-persist-plus to allow persistence. Defaults to use sessionStorage.
+* validation: it comes with simple-react-validator. You can pass in a different validator object (e.g. your custom simple-react-validator), which will be passed back to your form for the actual implementation.
+* persistence: it uses react-persist-plus to allow persistence. Defaults to use sessionStorage.
 
 
 # Basic Usage
