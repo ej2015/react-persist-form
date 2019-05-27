@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`formWrapperCreater renders 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <input
+    label="Email"
+    name="email"
+    onChange={[Function]}
+  />
+  <button
+    type="submit"
+  >
+    Submit
+  </button>
+</form>
+`;

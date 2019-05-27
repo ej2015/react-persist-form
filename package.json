@@ -1,0 +1,43 @@
+{
+  "name": "react-persist-form",
+  "version": "0.0.1",
+  "description": "A simple form wrapper to handle common concerns such as inputs, validations, and persistence",
+  "main": "build/index.js",
+  "scripts": {
+    "start": "webpack --watch",
+    "build": "webpack",
+    "test": "jest"
+  },
+  "author": "Edgar Ji",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ej2015/react-persist-form.git"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6"
+  },
+  "dependencies": {
+    "lodash.pickby": "^4.6.0",
+    "react": "^16.8.6",
+    "react-persist-plus": "^1.2.0",
+    "simple-react-validator": "^1.0.7",
+    "webpack": "^4.32.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "@babel/preset-env": "^7.4.5",
+    "babel-jest": "^24.8.0",
+    "babel-loader": "^8.0.6",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.13.2",
+    "jest": "^24.8.0",
+    "react-dom": "^16.8.6",
+    "react-test-renderer": "^16.8.6",
+    "webpack-cli": "^3.3.2"
+  }
+}
