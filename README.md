@@ -23,11 +23,11 @@ An example of using the package with redux:
 ```
 import formWrapperCreater from 'react-simple-form'
 
-//define your form with this signature
+//define your form. Not all arguments are required (refer to the [next section](#Wrapper-props))
 //pass handleChange to your inputs. They will be handled automatically
-//data is entirely defined by you. You can use it to populate the inputs
+//data is entirely defined by you. One use case is to populate the inputs
 //inputs need unique name, which is used as the key for the data, which is persisted in store and returned on submission
-const Form = ({ error, data, handleChange, handleSubmit }) => (
+const Form = ({ error, data, handleChange, handleSubmit, validator }) => (
   <form onSubmit={handleSubmit}>
     <input
       label='Email'
@@ -39,16 +39,13 @@ const Form = ({ error, data, handleChange, handleSubmit }) => (
   </form>
 )
 
-//displayName is used for persistence
-Form.displayName = 'mySpecialForm'
-
 //create HOC
-//you can change validator or store using named arguments `validator` or `store`
+//the form name is used to identify the form in store
+//optional: you can change validator or store using named arguments `validator` or `store`
 //{ store: null } disables persistence
-const FormWrapper = formWrapperCreater({ Form })
+const FormWrapper = formWrapperCreater({form: 'mySpecialForm'})({ Form, validator, store })
 
 //use HOC
-//you need to provide your own `error` and `handleSubmit` here
 class WrappedForm extends Component {
   render () {
     const { error, handleSubmit } = this.props
@@ -72,5 +69,16 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 export default connect({}, mapDispatchToProps)(WrappedForm)
 
 ```
+
+# Wrapper props
+The wrapper passes a few props to your form.
+
+* data: includes all data you passes to the wrapper, plus `_form`
+* error: provided by you through the wrapper
+* handleChange: provided by the wrapper, add this to your inputs
+* handleSubmit: provided by you through the wrapper. it receives the values of all the inputs that are given `handleChange`.
+* validator: an instance of SimpleReactValidator by default. You can pass in your own through the warpper
+
+Only `handleChange` and `handleSubmit` are required.
 
 
