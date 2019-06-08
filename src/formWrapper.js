@@ -4,13 +4,12 @@ import pickBy from 'lodash.pickby'
 import SimpleReactValidator from 'simple-react-validator'
 import { getValueFromEvent } from './utils'
 
-const formWrapperCreater = formName => {
+const formWrapperCreater = ({name, Form}) => {
     class FormWrapper extends PureComponent {
       constructor(props) {
         super(props)
         this.state = props.initialFields
         this.handleSubmit = props.onSubmit
-        this.Form = props.Form
         this.validator = props.validator || new SimpleReactValidator()
         this.store = (typeof props.store === 'undefined') ? window.sessionStorage : props.store
       }
@@ -35,26 +34,25 @@ const formWrapperCreater = formName => {
       }
 
       blacklist = data => {
-        return pickBy(data, (v, k) => !['password'].includes(k))
+        return pickBy(data, (v, k) => k.match(/password/) === null )
       }
 
       render() {
         return (
           <>
             {this.store && <Persist
-              name={formName}
+              name={name}
               data={this.blacklist(this.state)}
               debounce={500}
               onMount={data => this.setState(data)}
               store={this.store}
             />}
-            { this.Form ({
-              handleChange: this.handleChange,
-              handleSubmit: this.handleValidationAndSubmit,
-              validator: this.validator,
-              data: this.state
-            })}
-
+            < Form
+              handleChange = {this.handleChange}
+              handleSubmit = {this.handleValidationAndSubmit}
+              validator = {this.validator}
+              data = {this.state}
+              error = {this.props.error}
             />
           </>
         )

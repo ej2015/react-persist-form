@@ -18,7 +18,7 @@ const Form = ({ error, data, handleChange, handleSubmit }) => (
   </form>
 )
 
-const FormWrapper = formWrapperCreater({form: 'myForm'})({ Form })
+const FormWrapper = formWrapperCreater({name: 'myForm', Form: Form })
 
 const ConnectedForm = ({ error, handleSubmit }) => (
   <FormWrapper
