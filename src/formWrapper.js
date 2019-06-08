@@ -1,30 +1,22 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Persist } from 'react-persist-plus'
 import pickBy from 'lodash.pickby'
 import SimpleReactValidator from 'simple-react-validator'
 import { getValueFromEvent } from './utils'
 
-const formWrapperCreater = ({ form }) => {
-  const validator = new SimpleReactValidator()
-  return ({ Form, validator = validator, store = window.sessionStorage }) => {
-    class FormWrapper extends Component {
+const formWrapperCreater = formName => {
+    class FormWrapper extends PureComponent {
       constructor(props) {
         super(props)
-        this.state = { _form: {}, error: null, ...props.data }
+        this.state = props.initialFields
         this.handleSubmit = props.onSubmit
-      }
-
-      componentWillReceiveProps(nextProps) {
-        if (nextProps.data.error !== this.props.data.error) {
-          this.setState({ error: nextProps.data.error })
-        }
+        this.Form = props.Form
+        this.validator = props.validator || new SimpleReactValidator()
+        this.store = (typeof props.store === 'undefined') ? window.sessionStorage : props.store
       }
 
       dispatchAttributeChange = changes => {
-        this.setState((state, props) => {
-          let newForm = { ...state._form, ...changes }
-          return { ...state, _form: newForm }
-        })
+        this.setState((state, props) => ({ ...state, ...changes }))
       }
 
       handleChange = e => {
@@ -34,42 +26,41 @@ const formWrapperCreater = ({ form }) => {
 
       handleValidationAndSubmit = event => {
         event.preventDefault()
-        if (validator.allValid()) {
-          this.handleSubmit(this.state._form)
+        if (this.validator.allValid()) {
+          this.handleSubmit(this.state)
         } else {
-          validator.showMessages()
+          this.validator.showMessages()
           this.forceUpdate()
         }
       }
 
-      whitelist = data => {
-        return pickBy(data, (v, k) => !['password', 'error'].includes(k))
+      blacklist = data => {
+        return pickBy(data, (v, k) => !['password'].includes(k))
       }
 
       render() {
         return (
           <>
-            {store && <Persist
-              name={form}
-              data={this.whitelist(this.state)}
+            {this.store && <Persist
+              name={formName}
+              data={this.blacklist(this.state)}
               debounce={500}
               onMount={data => this.setState(data)}
-              store={store}
+              store={this.store}
             />}
-            <Form
-              data={this.state}
-              handleChange={this.handleChange}
-              error={this.state.error}
-              handleSubmit={this.handleValidationAndSubmit}
-              validator={validator}
+            { this.Form ({
+              handleChange: this.handleChange,
+              handleSubmit: this.handleValidationAndSubmit,
+              validator: this.validator,
+              data: this.state
+            })}
+
             />
           </>
         )
       }
     }
-
     return FormWrapper
-  }
 }
 
 export default formWrapperCreater

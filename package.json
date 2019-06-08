@@ -15,14 +15,9 @@
     "url": "https://github.com/ej2015/react-persist-form.git"
   },
   "peerDependencies": {
-    "react": "^16.8.6"
-  },
-  "dependencies": {
-    "lodash.pickby": "^4.6.0",
     "react": "^16.8.6",
     "react-persist-plus": "^1.2.0",
-    "simple-react-validator": "^1.0.7",
-    "webpack": "^4.32.2"
+    "simple-react-validator": "^1.0.7"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",

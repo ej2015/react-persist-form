@@ -23,42 +23,43 @@ An example of using the package with redux:
 ```
 import formWrapperCreater from 'react-simple-form'
 
-//define your form. Not all arguments are required (refer to the [next section](#Wrapper-props))
-//pass handleChange to your inputs. They will be handled automatically
+//Step 1. define your form
 //data is entirely defined by you. One use case is to populate the inputs
 //inputs need unique name, which is used as the key for the data, which is persisted in store and returned on submission
-const Form = ({ error, data, handleChange, handleSubmit, validator }) => (
+const Form = ({ data, handleChange, handleSubmit, validator }) => (
   <form onSubmit={handleSubmit}>
     <input
       label='Email'
       name='email'
+      value={data.email}
       onChange={handleChange}
     />
-    {error && <div> error </div>}
     <button type='submit'>Submit</button>
   </form>
 )
 
-//create HOC
-//the form name is used to identify the form in store
-//optional: you can change validator or store using named arguments `validator` or `store`
+//Step 2. create HOC
+//pass in the form name for persistence
+//optional: you can change validator or store by setting `validator` or `store`
 //{ store: null } disables persistence
-const FormWrapper = formWrapperCreater({form: 'mySpecialForm'})({ Form, validator, store })
+const FormWrapper = formWrapperCreater('mySpecialForm')
 
-//use HOC
+//Step 3. use HOC
 class WrappedForm extends Component {
   render () {
     const { error, handleSubmit } = this.props
     return (
       <FormWrapper
-        data = {{error }}
-        onSubmit={handleSubmit}
+        Form={Form}
+        initialFields={initialFields}
+        handleSubmit={handleSubmit}
+        validator={validator}
       />
     )
   }
 }
 
-//connect to redux store
+//Step 4. connect to redux store (or provide handleSubmit in any other way)
 //on submission, data contains all the fileds, e.g. { email: 'a@b.com'}}
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
@@ -70,15 +71,12 @@ export default connect({}, mapDispatchToProps)(WrappedForm)
 
 ```
 
-# Wrapper props
-The wrapper passes a few props to your form.
+The wrapper passes a few props for your form.
 
-* data: includes all data you passes to the wrapper, plus `_form`
-* error: provided by you through the wrapper
+* data: all fields
 * handleChange: provided by the wrapper, add this to your inputs
 * handleSubmit: provided by you through the wrapper. it receives the values of all the inputs that are given `handleChange`.
 * validator: an instance of SimpleReactValidator by default. You can pass in your own through the warpper
 
-Only `handleChange` and `handleSubmit` are required.
-
-
+* Step 2: `Form`, `initialFields` and `handleSubmit` are required. 
+* Step 3: Only `handleSubmit` is required and you need to define it and pass it to the form wrapper.
