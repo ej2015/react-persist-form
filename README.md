@@ -74,5 +74,5 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
 export default connect({}, mapDispatchToProps)(WrappedForm)
 ```
-#Example
+# Example
 See this [example with redux](https://github.com/ej2015/react-persist-form-example)
