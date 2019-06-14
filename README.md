@@ -1,10 +1,10 @@
 # React Persist Form 
-A form wrapper to take care of the boiler plates. 
+A form wrapper to take care of the boilerplates. 
 
 * handles inputs for you
 * no dependency on Redux
-* buil-in validation with (simple-react-validator)[https://github.com/dockwa/simple-react-validator]
-* biilt-in persistence with (react-persist-plus)[https://github.com/ej2015/react-persist]
+* buil-in validation with [simple-react-validator](https://github.com/dockwa/simple-react-validator)
+* biilt-in persistence with [react-persist-plus](https://github.com/ej2015/react-persist)
 
 Installation
 ```
