@@ -6,6 +6,7 @@ A form wrapper to take care of the boiler plates.
 * buil-in validation with (simple-react-validator)[https://github.com/dockwa/simple-react-validator]
 * biilt-in persistence with (react-persist-plus)[https://github.com/ej2015/react-persist]
 
+Installation
 ```
 npm install react-persist-form --save
 ```
