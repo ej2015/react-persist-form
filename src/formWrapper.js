@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Persist } from 'react-persist-plus'
-import pickBy from 'lodash.pickby'
+import pickBy from 'lodash'
 import SimpleReactValidator from 'simple-react-validator'
 import { getValueFromEvent } from './utils'
 

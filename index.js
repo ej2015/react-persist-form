@@ -1,10 +1,9 @@
 import formWrapperCreater from './src/formWrapper'
 
 const curried = wrapper => (
-  validator => (
-    store => (
-      Form => (
-        wrapper({Form, store, validator})
+  name => (
+    Form => (
+        wrapper({Form, name})
       )
     )
   )

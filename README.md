@@ -27,58 +27,12 @@ Create an HOC with the wrapper provided by this package. To use the HOC, you jus
 An example of using the package with redux:
 
 Step 1. define your form
-```
-import formWrapperCreater from 'react-simple-form'
-
-//data contains the fields. Input name needs to be the same as the key in data (e.g. 'name' in the example below)
-const Form = ({ data, handleChange, handleSubmit, validator }) => (
-  <form onSubmit={handleSubmit}>
-    <input
-      label='Email'
-      name='email'
-      value={data.email}
-      onChange={handleChange}
-    />
-    <button type='submit'>Submit</button>
-  </form>
-)
-```
-
 Step 2. create HOC
-```
-//pass in the form name for persistence
-
-const FormWrapper = formWrapperCreater('mySpecialForm')
-```
 Step 3. use HOC
-Only `Form`, `initialFields` and `handleSubmit` are required. You can optionally set `validator` or `store` 
-```
-//{ store: null } disables persistence
-class WrappedForm extends Component {
-  render () {
-    const { error, handleSubmit } = this.props
-    return (
-      <FormWrapper
-        Form={Form}
-        initialFields={initialFields}
-        handleSubmit={handleSubmit}
-        validator={validator}
-      />
-    )
-  }
-}
-```
-
 Step 4. connect to redux store (or provide `handleSubmit` in any other way)
-```
-//on submission, data is passed to your handleSubmit method
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    handleSubmit: data => dispatch(setUser(data))
-  }
-}
 
-export default connect({}, mapDispatchToProps)(WrappedForm)
-```
+On submission, data is passed to your handleSubmit method. Check the tests for details.
+
+
 # Example
 See this [example with redux](https://github.com/ej2015/react-persist-form-example)

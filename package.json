@@ -14,11 +14,7 @@
     "type": "git",
     "url": "https://github.com/ej2015/react-persist-form.git"
   },
-  "peerDependencies": {
-    "react": "^16.8.6",
-    "react-persist-plus": "^1.2.0",
-    "simple-react-validator": "^1.0.7"
-  },
+  "peerDependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
@@ -36,5 +32,9 @@
     "react-test-renderer": "^16.8.6",
     "webpack-cli": "^3.3.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "react": "^16.9.0",
+    "react-persist-plus": "^1.2.1",
+    "simple-react-validator": "^1.0.7"
+  }
 }
