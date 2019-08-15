@@ -1,6 +1,6 @@
 {
   "name": "react-persist-form",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A simple form wrapper to handle common concerns such as inputs, validations, and persistence",
   "main": "build/index.js",
   "scripts": {
