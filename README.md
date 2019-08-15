@@ -26,10 +26,10 @@ Integraions:
 Create an HOC with the wrapper provided by this package. To use the HOC, you just need to provide your own `error` and `handleSubmit`. On submission, the data is passed back to your `handleSubmit` with the key
 An example of using the package with redux:
 
-Step 1. define your form
-Step 2. create HOC
-Step 3. use HOC
-Step 4. connect to redux store (or provide `handleSubmit` in any other way)
+* Step 1. define your form
+* Step 2. create HOC
+* Step 3. use HOC
+* Step 4. connect to redux store (or provide `handleSubmit` in any other way)
 
 On submission, data is passed to your handleSubmit method. Check the tests for details.
 
