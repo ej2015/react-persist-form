@@ -30,7 +30,7 @@
     "lodash": "^4.17.13",
     "react-dom": "^16.8.6",
     "react-test-renderer": "^16.8.6",
-    "webpack-cli": "^3.3.2"
+    "webpack-cli": "^5.0.1"
   },
   "dependencies": {
     "react": "^16.9.0",
